@@ -2,10 +2,11 @@ import React from 'react';
 
 import Styled from 'styled-components';
 
-import BaliseH1 from './BaliseH1.js';
-import BaliseP from './BaliseP.js';
-import BalisePBold from './BalisePBold.js';
-import BaliseP80 from './BaliseP80.js';
+import BaliseH1Green from './BaliseH1Green.js';
+import BalisePGreen18 from './BalisePGreen18.js';
+import BalisePBoldGreen18 from './BalisePBoldGreen18.js';
+import BalisePBold36Green from './BalisePBold36Green.js';
+import BaliseP120Green from './BaliseP120Green.js';
 import RedButtonDiv from './RedButtonDiv.js';
 
 
@@ -14,7 +15,7 @@ const RendezVous = () =>
   <article>
     <div className="row">
       <DivInformation>
-          <BaliseH1 children="Les rendez-vous" />
+          <BaliseH1Green children="Les rendez-vous" />
           <DivCentrer>
             <DivFloat>
               
@@ -22,25 +23,25 @@ const RendezVous = () =>
 
                 <div className="row col-6">
                   <DivCenter className="column col-4">
-                    <BaliseP80 children="18"></BaliseP80>
-                    <BalisePBold children="Mars"></BalisePBold> {/* margin-top: -30px; */} 
+                    <BaliseP120Green children="16"></BaliseP120Green>
+                    <BalisePBold36Green children="Août"></BalisePBold36Green> {/* margin-top: -30px; */} 
                   </DivCenter>
                   <DivAlignTextStart className="column col-8">
-                    <BaliseP children="Assemblée Générale de la CORPALIF"></BaliseP>
-                    <BaliseP children="Maison médicale Claire Demeure"></BaliseP>
-                    <BaliseP children="12 rue Porte de Buc"></BaliseP>
-                    <BaliseP children="78000 Versailles"></BaliseP>
+                    <BalisePBoldGreen18 children="Assemblée Générale de la CORPALIF"></BalisePBoldGreen18>
+                    <BalisePGreen18 children="Maison médicale Claire Demeure"></BalisePGreen18>
+                    <BalisePGreen18 children="12 rue Porte de Buc"></BalisePGreen18>
+                    <BalisePGreen18 children="78000 Versailles"></BalisePGreen18>
                   </DivAlignTextStart>
                 </div>
 
                 <div className="row col-6">
                   <DivCenter className="column col-4">
-                    <BaliseP80 children="25"></BaliseP80>
-                    <BalisePBold children="Avril"></BalisePBold>
+                    <BaliseP120Green children="25"></BaliseP120Green>
+                    <BalisePBold36Green children="Octobre"></BalisePBold36Green>
                   </DivCenter>
                   <DivAlignTextStart className="column col-8">
-                    <BaliseP children="Journée régionale Aura des EMSP"></BaliseP>
-                    <BaliseP children="IFSI de Clermont-Ferrand"></BaliseP>
+                    <BalisePBoldGreen18 children="Journée régionale Aura des EMSP"></BalisePBoldGreen18>
+                    <BalisePGreen18 children="IFSI de Clermont-Ferrand"></BalisePGreen18>
                   </DivAlignTextStart>
                 </div>
 
