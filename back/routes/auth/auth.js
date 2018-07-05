@@ -39,43 +39,44 @@ Router.post("/signup", (req, res, next) => {
 })
 
 Router.post("/Register",  (req, res, next) => {
-  console.log(req.body)
-  console.log("Register")
-  const {error} = Joi.validate(req.body, joiRegister,{ abortEarly: false })
+  console.log('BODY ' + req.body.user.nom)
+  //const {error} = Joi.validate(req.body, joiRegister,{ abortEarly: false })
   // const result = joiValidate.validate({ ...req.body })
   // console.log("validate: ", )
   // console.log("ERROR result:", result.error.data)
-  if(error !== null){
-    const resultError = error.details.map( value => {if(value.path) {return value.path}})
-    console.log('yolo:', resultError)
-    return res.status(200).send({ err: resultError})  
-  }
+  //if(error !== null){
+  //   const resultError = error.details.map( value => {if(value.path) {return value.path}})
+  //   console.log('ERROR', resultError)
+  //   return res.status(200).send({ err: resultError})  
+  // }
   // const sql = `INSERT INTO users ( fristname, lastname, civiliter, statussocial, adresse, codepostal, ville, structure, service, fonction, email, password, status, fgpasword, tel_fix, tel_port) VALUES ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?`
   // const sql = `INSERT INTO users ( fristname, lastname, civiliter, statussocial, adresse, codepostal, ville, structure, service, fonction, email, status, tel_fix, tel_port) VALUES ('fristname','lastname','m','statusSocial','194 rue marc','75018','paris','structure','service','fonction','email@gmail.com','admin','0','0')`
-   const sql = `INSERT INTO users ( fristname, lastname, civiliter, adresse, codepostal, ville, structure, service, fonction, email,  tel_fix, tel_port, status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`
+   const sql = `INSERT INTO users ( fristname, lastname, civiliter, statussocial, adresse, codepostal, ville, structure, service, fonction, email,  tel_fix, tel_port, status) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
 
 console.log('REQ BODY :' , req.body)
    
  console.log('-------------------------')
 
-const fristname = req.body.fristname
-const lastname = req.body.lastname
-const civiliter = req.body.civilite
-const adresse = req.body.Adresse
-const codepostal = req.body.codePostal
-const ville = req.body.ville
-const structure = req.body.structure
-const service = req.body.service
-const fonction = req.body.fonction
-const email = req.body.email
-const tel_fix = req.body.telFix
-const tel_port = req.body.telMob
-const status = 'user'
+const fristname = req.body.user.nom
+const lastname = req.body.user.prenom
+const civiliter = 'docteur'
+const statussocial = '0'
+const adresse = req.body.user.adresse
+const codepostal = req.body.user.codePostale
+const ville = req.body.user.ville
+const structure = req.body.user.structure
+const service = req.body.user.service
+const fonction = req.body.user.fonction
+const email = req.body.user.email
+const tel_fix = req.body.user.telFixe
+const tel_port = req.body.user.telMobile
+const status = false
 
 const values = [
   fristname,
   lastname,
   civiliter,
+  statussocial,
   adresse,
   codepostal,
   ville,
@@ -98,7 +99,7 @@ console.log('-------------------------------')
       }
       console.log("Number of records inserted: " + result.affectedRows)
     })
-  return res.status(200).send({ mess: "DONNER AJOUTER EN BDD" })
+  return res.status(200).send({ mess: "DONNEES AJOUTER EN BDD" })
 })
 
 Router.post("/protected", (req, res, next) => {
