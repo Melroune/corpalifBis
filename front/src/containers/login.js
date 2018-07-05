@@ -1,11 +1,14 @@
 import React, { Component } from "react"
 
+
+import Header from '../components/Header.js'
+import Formulaire from '../components/Formulaire.js'
+import Footer from '../components/Footer.js'
+
 // import styled from "styled-components"
 import './App.css'
 
-import Header from "../components/Header";
-import Formulaire from "../components/Formulaire";
-import Footer from "../components/Footer";
+
 
 // const Header = styled.div`
 //   background-color: ${props => props.theme.color.black};
@@ -23,6 +26,13 @@ class Login extends Component {
 
   render() {
     return (
+
+     // <React.Fragment>
+      //  <Header />
+     //   <Formulaire />
+     //   <Footer />
+   //   </React.Fragment>
+
       <div className="App">
         <div className="Container">
           <React.Fragment>
@@ -32,6 +42,7 @@ class Login extends Component {
           </React.Fragment>
         </div>
       </div>
+
     )
   }
 }

@@ -1,13 +1,13 @@
 import React from 'react';
 
 import Styled from 'styled-components';
-
+import { Link } from "react-router-dom"
 
 // JSX
 const RedButton = ({ children, ...rest }) => 
-    <Button {...rest}>
+    <Link to="/login" > <Button {...rest}>
       {children}
-    </Button>
+    </Button></Link>
 
 
 // Styled-components
