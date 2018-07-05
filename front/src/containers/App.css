@@ -27,8 +27,7 @@
 /* Header 001, partie supérieur du header, logo, recherche, login, etc*/
 /* ////////////////////////////////////////////////////////////////// */
 
-.RowMargin {
-  /*Décaler de 20px le margin de la 1ère row*/
+.RowMargin { /*Décaler de 20px le margin de la 1ère row*/
   margin: 0 20px;
 }
 
@@ -38,44 +37,47 @@
   align-items: center;
 }
 
+
 /* Section avec l'image de fond + l'annuaire  */
 /* ////////////////////////////////////////// */
 
 .ImageParis {
-  background: url(../img/Paris_Fond_001.jpg) no-repeat center fixed;
+  background: url(./../img/Paris_Fond_001.jpg) no-repeat center fixed;
   background-size: cover;
-  -webkit-background-size: cover;
+  -webkit-background-size: cover; 
 }
 
 .ImageJustice {
-  height: 250px;
+  height: 450px;
   width: 100%;
-  background: url(../img/Justice_Fond_n&b_001.jpg) no-repeat center fixed;
+  background: url(./../img/Justice_Fond_n&b_001.jpg) no-repeat center fixed;
   background-size: cover;
-  -webkit-background-size: cover;
+  -webkit-background-size: cover; 
   /*-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   /*filter: grayscale(100%);*/
 }
 
 .ImageHopital {
-  /*height: 250px;*/
+  height: 450px;
   width: 100%;
-  background: url(../img/Hopital_Fond_n&b_001.jpg) no-repeat center fixed;
+  background: url(./../img/Hopital_Fond_n&b_001.jpg) no-repeat center fixed;
   background-size: cover;
-  -webkit-background-size: cover;
+  -webkit-background-size: cover; 
   /*-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   /*filter: grayscale(100%);*/
 }
 
 .ImageAnciens {
-  /*height: 250px;*/
+  height: 450px;
   width: 100%;
-  background: url(../img/Anciens_Fond_n&b_001.jpg) no-repeat center fixed;
+  background: url(./../img/Anciens_Fond_n&b_001.jpg) no-repeat center fixed;
   background-size: cover;
-  -webkit-background-size: cover;
+  -webkit-background-size: cover; 
   /*-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   /*filter: grayscale(100%);*/
 }
+
+
 
 /* Section avec La Corpalif 4 missions + dons  */
 /* /////////////////////////////////////////// */
@@ -90,7 +92,7 @@
 .App-CorpalifInformation {
   display: flex;
   flex-direction: column;
-
+  justify-content: center;
   width: 100%;
   padding: 50px;
 
@@ -99,7 +101,8 @@
 }
 
 .FondGris {
-  background-color: rgba(0, 0, 0, 0.3);
+  height: 450px;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .CorpalifInformationCentrer {
@@ -110,23 +113,33 @@
   margin: 15px;
 }
 
+.CorpalifInformation {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 450px;
+}
+
 .DivFlollante {
   display: flex;
   flex-direction: column;
 
-  max-width: 1000px;
+  max-width: 900px;
 }
 
 .CorpalifInformation li {
   display: flex;
 }
 
+
 /* Slider */
-/* ////// */
+/* ////// */ 
+
 
 .carousel-item {
+  height: 450px;
   width: 100%;
   background: no-repeat center fixed;
   background-size: cover;
-  -webkit-background-size: cover;
+  -webkit-background-size: cover; 
 }
