@@ -3,7 +3,7 @@ import React from 'react';
 import Styled from 'styled-components';
 
 import BaliseP from './BaliseP.js';
-import BalisePBold18 from './BalisePBold18.js';
+
 import BalisePBold24 from './BalisePBold24.js';
 
 
@@ -75,6 +75,7 @@ const DivCorpaCenter = Styled.div`
 
 const Li = Styled.li`   
   ${Li}:hover {
+
     color: rgb(51, 116, 103);
 }
 `;

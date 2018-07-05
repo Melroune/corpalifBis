@@ -3,6 +3,7 @@ import React from 'react';
 import Styled from 'styled-components';
 
 import BaliseH1Form from './BaliseH1Form.js';
+
 // import BaliseH2 from './BaliseH2.js';
 // import BalisePBold from './BalisePBold.js';
 // import BaliseP from './BaliseP.js';
@@ -10,6 +11,7 @@ import BaliseH1Form from './BaliseH1Form.js';
 
 
 // JSX
+
 class Formulaire extends React.Component {
   state = {
     civilite: '',
@@ -100,17 +102,21 @@ class Formulaire extends React.Component {
           <DivCentrer>
             <DivFloat>
               <Form onSubmit={this.HandleSubmit}>
+
+
                 <DivRow className="row justify-content-center">
                   <DivLabel className="col-3">
                     <Label for="inputCivilite">Civilité</Label>
                   </DivLabel>
                   <div className="col-5">
+
                     <Select name="civilite" className="form-control" onChange={this.handleChange}>
                       <option defaultValue onChange={this.handleChange}>Docteur</option>
                       <option onChange={this.handleChange}>Professeur</option>
                       <option onChange={this.handleChange}>Mademoiselle</option>
                       <option onChange={this.handleChange}>Madame</option>
                       <option onChange={this.handleChange}>Monsieur</option>
+
                     </Select>
                   </div>
                   </DivRow>
@@ -119,7 +125,9 @@ class Formulaire extends React.Component {
                     <Label for="inputNom">Nom</Label>
                   </DivLabel>
                   <div className="col-5">
+
                     <Input type="text" name="nom" className="form-control" onChange={this.handleChange} />
+
                   </div>
                 </DivRow>
                 <DivRow className="row justify-content-center">
@@ -127,7 +135,9 @@ class Formulaire extends React.Component {
                     <Label for="inputPrenom">Prénom</Label>
                   </DivLabel>
                   <div className="col-5">
+
                     <Input type="text" name="prenom" className="form-control" onChange={this.handleChange} />
+
                   </div>
                 </DivRow>
                 <DivRow className="row justify-content-center">
@@ -135,23 +145,29 @@ class Formulaire extends React.Component {
                     <Label for="inputEmail">Email</Label>
                   </DivLabel>
                   <div className="col-5">
+
                     <Input type="email" className="form-control" name="email" onChange={this.handleChange} />
                   </div>
                 </DivRow>
                 {/* <DivRow className="row justify-content-center">
+
                   <DivLabel className="col-3">
                     <Label for="inputPassword">Password</Label>
                   </DivLabel>
                   <div className="col-5">
+
                     <Input type="password" className="form-control" id="password" />
                   </div>
                 </DivRow> */}
+
                 <DivRow className="row justify-content-center">
                   <DivLabel className="col-3">
                     <Label for="inputAdresse">Adresse</Label>
                   </DivLabel>
                   <div className="col-5">
+
                     <Input type="text" className="form-control" name="adresse" onChange={this.handleChange} />
+
                   </div>
                 </DivRow>
                 <DivRow className="row justify-content-center">
@@ -159,7 +175,9 @@ class Formulaire extends React.Component {
                     <Label for="inputVille">Ville</Label>
                   </DivLabel>
                   <div className="col-5">
+
                     <Input type="text" className="form-control" name="ville" onChange={this.handleChange} />
+
                   </div>
                 </DivRow>
                 <DivRow className="row justify-content-center">
@@ -167,7 +185,9 @@ class Formulaire extends React.Component {
                     <Label for="inputCodePostale">Code Postale</Label>
                   </DivLabel>
                   <div className="col-5">
+
                     <Input type="text" className="form-control" name="codePostale" onChange={this.handleChange} />
+
                   </div>
                 </DivRow>
                 <DivRow className="row justify-content-center">
@@ -176,6 +196,7 @@ class Formulaire extends React.Component {
                   </DivLabel>
                   <div className="col-5">
                     <Input type="text" className="form-control" name="telFixe" onChange={this.handleChange} />
+
                   </div>
                 </DivRow>
                 <DivRow className="row justify-content-center">
@@ -184,6 +205,7 @@ class Formulaire extends React.Component {
                   </DivLabel>
                   <div className="col-5">
                     <Input type="text" className="form-control" name="telMobile" onChange={this.handleChange} />
+
                   </div>
                 </DivRow>
                 <DivRow className="row justify-content-center">
@@ -191,7 +213,9 @@ class Formulaire extends React.Component {
                     <Label for="inputStructure">Structure</Label>
                   </DivLabel>
                   <div className="col-5">
+
                     <Input type="text" className="form-control" name="structure" onChange={this.handleChange} />
+
                   </div>
                 </DivRow>
                 <DivRow className="row justify-content-center">
@@ -199,7 +223,9 @@ class Formulaire extends React.Component {
                     <Label for="inputService">Service</Label>
                   </DivLabel>
                   <div className="col-5">
+
                     <Input type="text" className="form-control" name="service" onChange={this.handleChange} />
+
                   </div>
                 </DivRow>
                 <DivRow className="row justify-content-center">
@@ -207,11 +233,13 @@ class Formulaire extends React.Component {
                     <Label for="inputFonction">Fonction</Label>
                   </DivLabel>
                   <div className="col-5">
+
                     <Input type="text" className="form-control" name="fonction" onChange={this.handleChange} />
                   </div>
                 </DivRow>
                 <DivRow className="row justify-content-center">
                   <Button type="submit"  className="col-2">Valider</Button>
+
                 </DivRow>
               </Form>
 
@@ -220,8 +248,10 @@ class Formulaire extends React.Component {
       </DivInformation>
     </div>
   </article>
+
     )}
 }
+
 // Styled-components
 // eslint-disable 
 const DivRow = Styled.div`

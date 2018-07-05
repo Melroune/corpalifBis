@@ -22,7 +22,6 @@ const Header = () =>
       <div className="Flex col-1">
         <DivLogo className="row">
           <LittleLogo />
-          <LittleLogo />
         </DivLogo>
       </div>
       <DivRecherche className="col-2">

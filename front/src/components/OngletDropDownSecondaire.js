@@ -4,9 +4,9 @@ import styled from "styled-components"
 
 // JSX
 const OngletDropDownSecondaire = ({ children, link }) => (
-  <Link className="dropdown-item" to={link ? link : "/news"}>
+  <StyledLink className="dropdown-item" to={link ? link : "/news"}>
     <p>{children}</p>
-  </Link>
+  </StyledLink>
 )
 
 // Styled-components
@@ -16,9 +16,10 @@ const StyledLink = styled(Link)`
   color: rgb(51, 116, 103);
 
   ${StyledLink}:hover {
+    color: white;
     background-color: rgb(51, 116, 103);
   }
-`
+`;
 // eslint-enable
 
 export default OngletDropDownSecondaire
