@@ -8,6 +8,8 @@ import StyledButton from "../components/Button.js"
 
 import { Editor } from "@tinymce/tinymce-react"
 
+import './App.css'
+
 const AllContainer = styled.div`
   display: flex;
   flex: 1;
