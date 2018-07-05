@@ -35,9 +35,9 @@ class App extends Component {
         <div className="App">
           <div className="Container">
             <Header />
-            <Link to="/login"> se connecter</Link>
+            {/* <Link to="/login"> se connecter</Link>
             <Link to="/admin/articles">edition article</Link>
-            <Link to="/news">yoloNews</Link>
+            <Link to="/news">yoloNews</Link> */}
             <AnnuaireEnEntier />
             <Article01 />
 
