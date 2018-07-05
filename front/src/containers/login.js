@@ -1,12 +1,15 @@
 import React, { Component } from "react"
 import styled from "styled-components"
 
-const Header = styled.div`
-  background-color: ${props => props.theme.color.black};
-  height: 150px;
-  padding: 20px;
-  color: white;
-`
+import Header from '../components/Header.js'
+import Formulaire from '../components/Formulaire.js'
+import Footer from '../components/Footer.js'
+// const Header = styled.div`
+//   background-color: ${props => props.theme.color.black};
+//   height: 150px;
+//   padding: 20px;
+//   color: white;
+// `
 
 class Login extends Component {
   state = {
@@ -19,7 +22,8 @@ class Login extends Component {
     return (
       <React.Fragment>
         <Header />
-        <p>Ceci est la page de login</p>
+        <Formulaire />
+        <Footer />
       </React.Fragment>
     )
   }
