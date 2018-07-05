@@ -3,6 +3,7 @@ import React from 'react';
 import Styled from 'styled-components';
 
 import BaliseH1 from './BaliseH1.js';
+import BaliseH1Green from './BaliseH1Green.js';
 // import BaliseH2 from './BaliseH2.js';
 // import BalisePBold from './BalisePBold.js';
 // import BaliseP from './BaliseP.js';
@@ -14,7 +15,7 @@ const Formulaire = () =>
   <article>
     <div className="row">
       <DivInformation>
-          <BaliseH1 children="Inscrit toi et rejoins nous !!!" />
+          <BaliseH1Green children="Inscrivez vous et rejoignez nous" />
           <DivCentrer>
             <DivFloat>
               <Form>
