@@ -2,8 +2,11 @@ import React from "react";
 import queryString from "query-string";
 import { connect } from "react-redux";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import axios from "axios";
+
 import styled from "styled-components";
+import './App.css'
 
 // const Header = styled.div`
 //   background-color: ${props => props.theme.color.black};
@@ -158,32 +161,37 @@ class News extends React.Component {
     console.log(this.props);
     return (
       <React.Fragment>
-        <Header />
-        <AllContainer>
-          <NewsContainer>{articlesMap(this.state.news)}</NewsContainer>
-          <WidgetsContainer>
-            <Box>
-              <BoxHeader>
-                <BoxTitle> Lorem Ipsum</BoxTitle>
-              </BoxHeader>
-              <BoxContent>
-                <BoxContentText>
-                  Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-                </BoxContentText>
-              </BoxContent>
-            </Box>
-            <Box light>
-              <BoxHeader>
-                <BoxTitle> Lorem Ipsum</BoxTitle>
-              </BoxHeader>
-              <BoxContent>
-                <BoxContentText>
-                  Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-                </BoxContentText>
-              </BoxContent>
-            </Box>
-          </WidgetsContainer>
-        </AllContainer>
+        <div className="App">
+          <div className="Container">
+            <Header />
+            <AllContainer>
+              <NewsContainer>{articlesMap(this.state.news)}</NewsContainer>
+              <WidgetsContainer>
+                <Box>
+                  <BoxHeader>
+                    <BoxTitle> Lorem Ipsum</BoxTitle>
+                  </BoxHeader>
+                  <BoxContent>
+                    <BoxContentText>
+                      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+                    </BoxContentText>
+                  </BoxContent>
+                </Box>
+                <Box light>
+                  <BoxHeader>
+                    <BoxTitle> Lorem Ipsum</BoxTitle>
+                  </BoxHeader>
+                  <BoxContent>
+                    <BoxContentText>
+                      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+                    </BoxContentText>
+                  </BoxContent>
+                </Box>
+              </WidgetsContainer>
+            </AllContainer>
+            <Footer />
+          </div>
+        </div>
       </React.Fragment>
     );
   }
