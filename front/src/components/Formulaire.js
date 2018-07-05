@@ -15,7 +15,7 @@ const Formulaire = () =>
   <article>
     <div className="row">
       <DivInformation>
-          <BaliseH1Green children="Inscrivez vous et rejoignez nous" />
+          <BaliseH1Green children="Inscrivez-vous et rejoignez nous" />
           <DivCentrer>
             <DivFloat>
               <Form>
