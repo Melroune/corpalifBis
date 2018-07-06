@@ -23,14 +23,14 @@ const Li = Styled.li`
 `
 
 const A = Styled.a`
-  display: flex;
   align-items: center;
+  color: white;
+  display: flex;
+  font-size: 0.9em;
+  font-weight: bold;
   height: 50px;
   padding: 0 1em;
-  font-weight: bold;
-  color: white;
   text-decoration: none;
-
  ${A}:hover {
   text-decoration:none; 
   color: rgb(201, 201, 201);

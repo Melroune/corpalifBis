@@ -1,12 +1,14 @@
 import React, { Component } from "react"
 import styled from "styled-components"
 import axios from "axios"
+import { push } from "connected-react-router"
+import { store } from "../config/store"
 
 import StyledButton from "../components/Button.js"
 
 import { Editor } from "@tinymce/tinymce-react"
 
-import './App.css'
+import "./App.css"
 
 const AllContainer = styled.div`
   display: flex;
@@ -163,6 +165,10 @@ class ArticleCreation extends Component {
         users_idusers: 1
       }
     })
+      .then(res => {
+        store.dispatch(push("/admin/articles"))
+      })
+      .catch(err => err)
   }
   componentDidMount() {
     // console.log("TopMenu", this.props);
@@ -177,6 +183,7 @@ class ArticleCreation extends Component {
   }
   render() {
     console.log(this.state)
+    console.log("article crea", this.props)
     return (
       <React.Fragment>
         <AllContainer>

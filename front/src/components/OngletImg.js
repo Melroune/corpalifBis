@@ -1,22 +1,22 @@
-import React from 'react';
+import React from "react"
+import { Link } from "react-router-dom"
+import Styled from "styled-components"
 
-import Styled from 'styled-components';
-
-import HomeWhite from '../img/HomeWhite.png';
+import HomeWhite from "../img/HomeWhite.png"
 // import HomeBlack from '../img/HomeBlack.png';
 
-
 // JSX
-  const OngletImg = () => 
+const OngletImg = () => (
   <li>
-    <A href="#Home">
-      <Img src={HomeWhite} ></Img>  {/*onMouseOver={e => (e.currentTarget.src={HomeBlack} )} */}
+    <A to="/">
+      <Img src={HomeWhite} />{" "}
+      {/*onMouseOver={e => (e.currentTarget.src={HomeBlack} )} */}
     </A>
   </li>
-
+)
 
 // Styled-components
-// eslint-disable 
+// eslint-disable
 const Img = Styled.img`
   height: 40px;
   width: 40px;
@@ -39,9 +39,9 @@ const Img = Styled.img`
     filter: invert(100%);
     transition: filter 0.4s;
   }
-`;
+`
 
-const A = Styled.a`
+const A = Styled(Link)`
   display: flex;
   align-items: center;
   height: 50px;
@@ -52,8 +52,7 @@ const A = Styled.a`
     height: 50px;
     padding: 0 1em;
   }
-`;
+`
 // eslint-enable
-
 
 export default OngletImg

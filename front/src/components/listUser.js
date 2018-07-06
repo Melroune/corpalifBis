@@ -1,19 +1,19 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import axios from "axios";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { Component } from "react"
+import styled from "styled-components"
+import axios from "axios"
+import { connect } from "react-redux"
+import { Link } from "react-router-dom"
 
 const Title = styled.h4`
   margin: 0;
   padding: 10px;
   background-color: ${props => props.theme.color.grey};
-`;
+`
 
 const Edition = styled.div`
   flex: 1;
   display: flex;
-`;
+`
 
 const ListContainer = styled.div`
   width: 100%;
@@ -22,30 +22,30 @@ const ListContainer = styled.div`
     props.isList ? props.theme.color.greenLight : props.theme.color.green};
   display: flex;
   justify-content: flex-start;
-`;
+`
 
 const ListCell = styled.div`
   text-align: center;
   height: inherit;
   flex: ${props => props.flex};
-`;
+`
 
 const ListText = styled.span`
   cursor: ${props => (props.pointer ? "pointer" : "")};
   line-height: 40px;
   padding: 0px 5px;
-`;
+`
 
-const isValidated = validated => (validated ? "OUI" : "NON");
+const isValidated = validated => (validated ? "OUI" : "NON")
 
 const Visibility = styled.span`
   cursor: pointer;
   text-transform: uppercase;
   line-height: 40px;
   color: ${props => {
-    return props.visible ? props.theme.color.green : props.theme.color.red;
+    return props.visible ? props.theme.color.green : props.theme.color.red
   }};
-`;
+`
 
 const FakeData = [
   {
@@ -80,9 +80,12 @@ const FakeData = [
     fonction: "Docteur",
     tel_port: "0615998406"
   }
-];
+]
 
-const UserList = (users, editVisibility) => {
+const UserList = (users, validateUser) => {
+  // if (users) {
+  console.log("user", users)
+
   return users.map((user, key) => {
     return (
       <ListContainer key={key} isList>
@@ -105,14 +108,18 @@ const UserList = (users, editVisibility) => {
           <ListText> {user.tel_port}</ListText>
         </ListCell>
         <ListCell flex={1}>
-          <Visibility validated={user.validated}>
+          <Visibility
+            validated={user.validated}
+            onClick={() => validateUser(user.idusers)}
+          >
             {isValidated(user.validated)}
           </Visibility>
         </ListCell>
       </ListContainer>
-    );
-  });
-};
+    )
+  })
+  // }
+}
 
 const ListHeader = () => (
   <ListContainer>
@@ -138,7 +145,7 @@ const ListHeader = () => (
       <ListText> Validé</ListText>
     </ListCell>
   </ListContainer>
-);
+)
 
 class ListUser extends React.PureComponent {
   state = {
@@ -147,33 +154,41 @@ class ListUser extends React.PureComponent {
     subCategory: 0,
     redirect: false,
     editArticleState: []
-  };
-
-  componentDidMount() {
-    axios.get(`http://localhost:3030/articles/getArticle/cat/1`).then(res => {
-      this.setState({ users: res.data });
-    });
   }
 
-  validateUser = id => {};
+  componentDidMount() {
+    axios.get(`http://localhost:3030/users/getUser`).then(res => {
+      this.setState({ users: res.data })
+    })
+  }
+
+  validateUser = id => {
+    console.log(id)
+    axios.put(`http://localhost:3030/users/validateUsers/${id}`).then(res => {
+      axios.get(`http://localhost:3030/users/getUser`).then(res => {
+        this.setState({ users: res.data })
+      })
+    })
+  }
 
   render() {
+    // console.log(this.state.users)
     return (
       <React.Fragment>
         <Title>LISTE UTILISATEUR</Title>
         <ListHeader />
         {/*{UserList(this.state.users, this.editArticle, this.validateUser)}*/}
-        {UserList(FakeData, this.editArticle, this.validateUser)}
+        {UserList(this.state.users, this.validateUser)}
         <Edition />
       </React.Fragment>
-    );
+    )
   }
 }
 
 const mapStateToProps = state => {
   return {
     subCategory: state.category.subCategory
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps)(ListUser);
+export default connect(mapStateToProps)(ListUser)

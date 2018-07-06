@@ -3,12 +3,14 @@ import styled from "styled-components"
 import axios from "axios"
 import queryString from "query-string"
 import { connect } from "react-redux"
+import { store } from "../config/store"
+import { push } from "connected-react-router"
 
 import StyledButton from "../components/Button.js"
 
 import { Editor } from "@tinymce/tinymce-react"
 
-import './App.css'
+import "./App.css"
 
 const AllContainer = styled.div`
   display: flex;
@@ -81,9 +83,10 @@ class ArticleCreation extends Component {
     publish: false,
     title: null,
     content: null,
+    loading: true,
     tabCategory: [],
     tabSubCategory: [],
-    dataArticle: {}
+    dataArticle: { contenu: "" }
   }
 
   //refacto
@@ -165,34 +168,43 @@ class ArticleCreation extends Component {
         users_idusers: 1
       }
     })
+      .then(res => {
+        store.dispatch(push("/admin/articles"))
+      })
+      .catch(err => err)
   }
   async componentDidMount() {
     const parsed = queryString.parse(this.props.search)
-    // console.log("idParsed: ", parsed)
+
+    console.log("idParsed: ", parsed.id)
+    console.log("idParsed: ", typeof parsed.id)
     // console.log("TopMenu", this.props);
-    let res = await axios.get("http://localhost:3030/categories/getCat")
-    this.setState({ tabCategory: res.data.result })
+    axios
+      .get("http://localhost:3030/categories/getCat")
+      .then(res => this.setState({ tabCategory: res.data.result }))
 
-    res = await axios.get("http://localhost:3030/categories/getSousCat")
-    this.setState({ tabSubCategory: res.data.result })
+    axios
+      .get("http://localhost:3030/categories/getSousCat")
+      .then(res => this.setState({ tabSubCategory: res.data.result }))
 
-    res = await axios.get(
-      `http://localhost:3030/articles/editArticle/${parsed.id ? parsed.id : 2}`
-    )
-    // console.log({ data: res.data.result[parsed.id - 1].cible_status })
-    await this.setState({ dataArticle: res.data.result[parsed.id - 1] })
-    // console.log({ yolo: this.state.dataArticle })
-    await this.setState({
-      selectedCategory: this.state.dataArticle.Categories_idCategories
-    })
-    await this.handleSubCategoryVisibility(this.state.selectedCategory)
-    await this.setState({
-      selectedSubCategory:
-        res.data.result[parsed.id - 1].sous_categories_idsous_categories
-    })
-    await this.setState({
-      selectedStatus: res.data.result[parsed.id - 1].cible_status
-    })
+    axios
+      .get(`http://localhost:3030/articles/editArticle/${parsed.id}`)
+      .then(res => {
+        console.log(res)
+        //route en back mauvaise renvoi tout les articles
+        this.setState({ dataArticle: res.data.result[0] }, () => {
+          this.setState({
+            selectedCategory: this.state.dataArticle.Categories_idCategories,
+            selectedSubCategory:
+              res.data.result[0].sous_categories_idsous_categories,
+            selectedStatus: res.data.result[0].cible_status,
+            loading: false
+          })
+          this.handleSubCategoryVisibility(
+            this.state.dataArticle.Categories_idCategories
+          )
+        })
+      })
   }
 
   onChange = event => {
@@ -204,10 +216,15 @@ class ArticleCreation extends Component {
     })
   }
   render() {
-    console.log("---dataArticle---: ", this.state.dataArticle.contenu)
-    const contenu = this.state.dataArticle.contenu
+    // console.log("---dataArticle---: ", this.state.dataArticle.contenu)
+    const { contenu } = this.state.dataArticle
     // dangerouslySetInnerHTML={{
     //     __html: this.state.news.map(e => e.contenu)
+
+    if (this.state.loading) {
+      return <p>Loading</p>
+    }
+
     return (
       <React.Fragment>
         <AllContainer>

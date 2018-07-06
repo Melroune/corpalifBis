@@ -1,12 +1,12 @@
-import React from "react";
-import queryString from "query-string";
-import { connect } from "react-redux";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import axios from "axios";
+import React from "react"
+import queryString from "query-string"
+import { connect } from "react-redux"
+import Header from "../components/Header"
+import Footer from "../components/Footer"
+import axios from "axios"
 
-import styled from "styled-components";
-import './App.css'
+import styled from "styled-components"
+import "./App.css"
 
 // const Header = styled.div`
 //   background-color: ${props => props.theme.color.black};
@@ -23,14 +23,14 @@ const NewsContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
+`
 
 const WidgetsContainer = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
   margin: 10px;
-`;
+`
 
 const AllContainer = styled.div`
   display: flex;
@@ -39,13 +39,13 @@ const AllContainer = styled.div`
   padding: 10px;
   width: 90%;
   margin: auto;
-`;
+`
 
 const Separator = styled.div`
   width: 90%;
   background-color: ${props => props.theme.color.green};
   height: 1px;
-`;
+`
 
 const Content = styled.div`
   text-align: center;
@@ -53,20 +53,20 @@ const Content = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
-`;
+`
 
 const Title = styled.h3`
   color: ${props => props.theme.color.green};
   font-size: 40px;
   padding: 20px;
-`;
+`
 
 const TitleContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: ${props =>
     props.titleAlign === 0 ? "flex-start" : "flex-end"};
-`;
+`
 
 const ArticleContainer = styled.div`
   width: 100%;
@@ -74,12 +74,13 @@ const ArticleContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
+  padding: 20px;
+`
 
 const articlesMap = datas => {
-  console.log("data ", datas);
+  console.log("data ", datas)
   return datas.map((data, key) => {
-    console.log(key % 2);
+    console.log(key % 2)
     return (
       <ArticleContainer key={key}>
         <TitleContainer titleAlign={key % 2}>
@@ -92,9 +93,9 @@ const articlesMap = datas => {
         />
         <Separator />
       </ArticleContainer>
-    );
-  });
-};
+    )
+  })
+}
 
 const Box = styled.div`
   display: flex;
@@ -104,35 +105,35 @@ const Box = styled.div`
     props.light ? props.theme.color.green : props.theme.color.greenLight};
   margin-bottom: 20px;
   flex-direction: column;
-`;
+`
 
 const BoxHeader = styled.div`
   width: 100%;
   height: 50px;
   text-align: center;
-`;
+`
 
 const BoxTitle = styled.h4`
   color: ${props => props.theme.color.white};
   line-height: 50px;
-`;
+`
 
 const BoxContentText = styled.span`
   color: ${props => props.theme.color.white};
   padding: 20px;
-`;
+`
 
 const BoxContent = styled.div`
   padding: 20px;
-`;
+`
 
 class News extends React.Component {
   state = {
     news: []
-  };
+  }
 
   fetchNews = () => {
-    const parsed = queryString.parse(this.props.search);
+    const parsed = queryString.parse(this.props.search)
     axios
       .get(
         `http://localhost:3030/articles/getArticle/cat/${
@@ -140,25 +141,25 @@ class News extends React.Component {
         }`
       )
       .then(res => {
-        const tabDataNews = res.data.map(e => e);
-        console.log(tabDataNews);
-        this.setState({ news: tabDataNews });
+        const tabDataNews = res.data.map(e => e)
+        console.log(tabDataNews)
+        this.setState({ news: tabDataNews })
         //stocker dans state
-      });
-  };
+      })
+  }
 
   componentDidUpdate(prevProps) {
     if (this.props.search !== prevProps.search) {
-      this.fetchNews();
+      this.fetchNews()
     }
   }
 
   componentDidMount() {
-    this.fetchNews();
+    this.fetchNews()
   }
 
   render() {
-    console.log(this.props);
+    console.log(this.props)
     return (
       <React.Fragment>
         <div className="App">
@@ -173,7 +174,8 @@ class News extends React.Component {
                   </BoxHeader>
                   <BoxContent>
                     <BoxContentText>
-                      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+                      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+                      Ipsum
                     </BoxContentText>
                   </BoxContent>
                 </Box>
@@ -183,7 +185,8 @@ class News extends React.Component {
                   </BoxHeader>
                   <BoxContent>
                     <BoxContentText>
-                      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+                      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
+                      Ipsum
                     </BoxContentText>
                   </BoxContent>
                 </Box>
@@ -193,7 +196,7 @@ class News extends React.Component {
           </div>
         </div>
       </React.Fragment>
-    );
+    )
   }
 }
 
@@ -201,6 +204,6 @@ const mapStateToProps = state => ({
   pathname: state.router.location.pathname,
   search: state.router.location.search,
   hash: state.router.location.hash
-});
+})
 
-export default connect(mapStateToProps)(News);
+export default connect(mapStateToProps)(News)

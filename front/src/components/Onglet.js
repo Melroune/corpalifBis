@@ -1,32 +1,29 @@
-import React from 'react';
+import React from "react"
 
-import Styled from 'styled-components';
-
+import Styled from "styled-components"
 
 // JSX
-const Onglet = ({ children }) =>
+const Onglet = ({ children }) => (
   <Li>
-    <A href="#Onglet">
-      {children}
-    </A>
+    <A href="#Onglet">{children}</A>
   </Li>
-
+)
 
 // Styled-components
-// eslint-disable 
+// eslint-disable
 const Li = Styled.li`   
   ${Li}:hover {
     color: rgb(51, 116, 103);
     transition: color 0.4s;
 }
-`;
+`
 
 const A = Styled.a`
   display: flex;
   align-items: center;
   height: 50px;
   padding: 0 1em;
-
+  font-size: 0.9em;
   font-weight: bold;
   color: white;
 
@@ -37,8 +34,7 @@ const A = Styled.a`
     color: rgb(51, 116, 103);
     transition: color 0.4s;
   }
-`;
+`
 // eslint-enable
-
 
 export default Onglet
