@@ -1,2 +1,0 @@
-USE `corpalif`;
-INSERT INTO `corpalif`.`users` (`idusers`, `fristname`, `lastname`, `civiliter`, `statussocial`, `adresse`, `codepostal`, `ville`, `structure`, `service`, `fonction`, `email`, `password`, `status`, `fgpasword`, `tel_fix`, `tel_port`) VALUES (1, 'Admin', 'Admin', 'M', NULL, '194 rue du sol', '75005', 'paris', 'corpalif', NULL, 'Admin', 'admin@admin.com', 'tidus6789', 'user', NULL, '0000000000', '0000000000');

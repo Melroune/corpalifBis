@@ -136,7 +136,7 @@ class News extends React.Component {
     const parsed = queryString.parse(this.props.search)
     axios
       .get(
-        `http://localhost:3030/articles/getArticle/cat/${
+        `http://localhost:3030/articles/showArticle/cat/${
           parsed.id ? parsed.id : 2
         }`
       )
@@ -170,23 +170,31 @@ class News extends React.Component {
               <WidgetsContainer>
                 <Box>
                   <BoxHeader>
-                    <BoxTitle> Lorem Ipsum</BoxTitle>
+                    <BoxTitle> Liens utiles </BoxTitle>
                   </BoxHeader>
                   <BoxContent>
                     <BoxContentText>
-                      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-                      Ipsum
+                      Pour rédiger vos directives anticipées, télécharger le
+                      formulaire de la SFAP : Cliquez-ici Sites d'information
+                      sur les Soins palliatifs SFAP, Société Française
+                      d'Accompagnement et de soins Palliatifs Soin Palliatif
+                      CRDN, Centre National De Ressources Portail soins
+                      palliatifs EAPC, European Association for Palliative Care
                     </BoxContentText>
                   </BoxContent>
                 </Box>
                 <Box light>
                   <BoxHeader>
-                    <BoxTitle> Lorem Ipsum</BoxTitle>
+                    <BoxTitle>Liens utiles</BoxTitle>
                   </BoxHeader>
                   <BoxContent>
                     <BoxContentText>
-                      Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem
-                      Ipsum
+                      Pour rédiger vos directives anticipées, télécharger le
+                      formulaire de la SFAP : Cliquez-ici Sites d'information
+                      sur les Soins palliatifs SFAP, Société Française
+                      d'Accompagnement et de soins Palliatifs Soin Palliatif
+                      CRDN, Centre National De Ressources Portail soins
+                      palliatifs EAPC, European Association for Palliative Care
                     </BoxContentText>
                   </BoxContent>
                 </Box>

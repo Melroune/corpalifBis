@@ -47,7 +47,9 @@ Router.get("/editArticle/:id", (req, res, next) => {
   console.log("id edit article", req.params.id)
   // const sql = `select  articles.idarticles, articles.titre, articles.contenu, articles.versioncourt, articles.imgurl, articles.cible_status, articles.img_caroussel, articles.in_caroussel, articles.date_create, articles.visible, articles.sous_categories_idsous_categories, articles.users_idusers, sous_categories.Categories_idCategories from articles where idarticles = '1' INNER JOIN sous_categories ON articles.sous_categories_idsous_categories = sous_categories.idsous_categories;
   // const sql = `select * from articles where idarticles =  INNER JOIN sous_categories ON sous_categories_idsous_categories = idsous_categories`;
-  const sql = `select articles.idarticles, articles.titre, articles.contenu, articles.versioncourt, articles.imgurl, articles.cible_status, articles.img_caroussel, articles.in_caroussel, articles.date_create, articles.visible, articles.sous_categories_idsous_categories, articles.users_idusers, sous_categories.Categories_idCategories FROM articles INNER JOIN sous_categories ON articles.sous_categories_idsous_categories = sous_categories.idsous_categories`
+  const sql = `select articles.idarticles, articles.titre, articles.contenu, articles.versioncourt, articles.imgurl, articles.cible_status, articles.img_caroussel, articles.in_caroussel, articles.date_create, articles.visible, articles.sous_categories_idsous_categories, articles.users_idusers, sous_categories.Categories_idCategories FROM articles INNER JOIN sous_categories ON articles.sous_categories_idsous_categories = sous_categories.idsous_categories WHERE idarticles = ${
+    req.params.id
+  }`
 
   con.query(sql, (err, result) => {
     if (err) {
@@ -65,6 +67,22 @@ Router.get("/getArticle/cat/:id", (req, res, next) => {
   const id = Number(req.params.id)
   const statusUsers = "user" //data a recup du token
   const sql = `SELECT * FROM articles WHERE sous_categories_idsous_categories = '${id}' AND cible_status = '${statusUsers}'`
+  con.query(sql, (err, result) => {
+    if (err) {
+      console.log("[mysql error]", err)
+    }
+    console.log("Number of records inserted: " + result)
+    return res.status(200).send(result)
+  })
+})
+//======================{ /showArticle/cat/:id }==========================//
+
+Router.get("/showArticle/cat/:id", (req, res, next) => {
+  console.log("showArticle: ", req.params.id)
+  const id = Number(req.params.id)
+  const visible = 1
+  const statusUsers = "user" //data a recup du token
+  const sql = `SELECT * FROM articles WHERE sous_categories_idsous_categories = '${id}' AND cible_status = '${statusUsers}' AND visible = '${visible}'`
   con.query(sql, (err, result) => {
     if (err) {
       console.log("[mysql error]", err)

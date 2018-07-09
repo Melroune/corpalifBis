@@ -1,19 +1,18 @@
-const mysql = require("mysql");
+const mysql = require("mysql")
 
 const con = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "mysql",
+  password: "yolo6789",
   database: "corpalif"
-});
+})
 
-con.connect((err) => {
+con.connect(err => {
   if (err) throw err
   console.log("Connected!")
 })
 
 module.exports = con
-
 
 // const mysql = require("mysql2/promise");
 // const bcrypt = require("bcrypt");

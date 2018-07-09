@@ -20,7 +20,10 @@ const onglet2 = [
   { name: "Accompagner son proche", to: "/news?id=7" },
   { name: "Législation", to: "/news?id=8" }
 ]
-const onglet4 = [{ name: "Offres d'emploi", to: "/news?id=13" }]
+const onglet4 = [
+  { name: "Offres d'emploi", to: "/news?id=13" },
+  { name: "Formation", to: "/news?id=14" }
+]
 const onglet5 = [
   { name: "Recommandations", to: "/news?id=9" },
   { name: "Actualités", to: "/news?id=10" },

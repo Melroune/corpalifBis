@@ -8,7 +8,7 @@ const con = require("../../helpers/db.js")
 const Router = express.Router()
 
 Router.get("/", (req, res, next) => {
-  res.send("I am in GET auth YOLO")
+  res.send("I am in GET user YOLO")
 })
 // =============== RecupUsers================/
 
@@ -28,7 +28,7 @@ Router.get("/getUser", (req, res, next) => {
 // ===============validateUsers================/
 // `UPDATE users SET statussocial = '1', WHERE id = 2;`
 
-Router.post("/validateUsers/:id", (req, res) => {
+Router.put("/validateUsers/:id", (req, res) => {
   console.log("validateUsers: ", req.params.id)
   const id = Number(req.params.id)
 
@@ -42,7 +42,5 @@ Router.post("/validateUsers/:id", (req, res) => {
     return res.status(200).send({ result, response: "ok" })
   })
 })
-
-
 
 module.exports = Router
