@@ -204,7 +204,7 @@ CREATE TABLE `users` (
   `email` varchar(255) DEFAULT NULL,
   `password` varchar(70) DEFAULT NULL,
   `status` varchar(70) DEFAULT NULL,
-  `fgpasword` varchar(70) DEFAULT NULL,
+  `fgpasword` varchar(250) DEFAULT NULL,
   `tel_fix` varchar(70) DEFAULT NULL,
   `tel_port` varchar(70) DEFAULT NULL,
   PRIMARY KEY (`idusers`)
