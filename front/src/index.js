@@ -12,6 +12,7 @@ import Login from "./containers/login"
 import ArticlesEdition from "./containers/articlesEdition"
 import Admin from "./containers/admin"
 import News from "./containers/news"
+import Password from "./containers/password"
 
 import { history, store } from "./config/store"
 import theme from "./config/theme"
@@ -25,6 +26,7 @@ ReactDOM.render(
           <Route path="/login" render={() => <Login />} />
           <Route path="/admin" render={() => <Admin />} />
           <Route path="/news" render={() => <News />} />
+          <Route path="/password" render={() => <Password />} />
           {/* <Route path="/directory"  render={() => <Directory/>}/> */}
         </Switch>
       </ConnectedRouter>

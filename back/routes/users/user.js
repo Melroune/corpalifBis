@@ -6,6 +6,8 @@ const jwtSecret = require("../../../jwtSecret")
 const con = require("../../helpers/db.js")
 const config = require('config')
 const nodemailer = require('nodemailer');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const Router = express.Router()
 
@@ -56,7 +58,7 @@ Router.put("/validateUsers/:id", (req, res) => {
         from: 'test.corpalif@gmail.com', // sender address
         to: res[0].email, // list of receivers
         subject: 'Changement Mot de passe', // Subject line
-        html: `<p>Welcome to corpalif cliquez ici pour changer votre mot de passe http://localhost:3000/users/password/${token}</p>`
+        html: `<p>Welcome to corpalif cliquez ici pour changer votre mot de passe http://localhost:3000/password/${token}</p>`
       }
     
       transporter.sendMail(mailOptions, function (err, info) {
@@ -66,14 +68,35 @@ Router.put("/validateUsers/:id", (req, res) => {
           console.log(info);
      })
     })
-
-      
-    
     return res.status(200).send({ result, response: "ok" })
   })
   
 
 })
+
+
+// ===============User create password after receiving email ================/
+
+Router.put("/createPassword", (req, res) => {
+  //const body = req.body[0]
+  const password = req.body.password
+  const token = req.body.token
+
+  //console.log('BODY ' + body)
+  bcrypt.hash(password, saltRounds)
+  .then(hash => {
+    const sql = `UPDATE users SET password='${hash}', fgpasword='0' WHERE fgpasword='${token}';`
+  
+    con.query(sql, (err, result) => {
+      if (err) {
+      console.log("[mysql error]", err)
+    }
+    //console.log("Number of records inserted: " + result.affectedRows)
+  })
+})
+return res.status(200).send({ mess: "Mot de passe créé" })
+})
+
 
 module.exports = Router
 
