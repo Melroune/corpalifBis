@@ -78,11 +78,9 @@ Router.put("/validateUsers/:id", (req, res) => {
 // ===============User create password after receiving email ================/
 
 Router.put("/createPassword", (req, res) => {
-  //const body = req.body[0]
   const password = req.body.password
   const token = req.body.token
 
-  //console.log('BODY ' + body)
   bcrypt.hash(password, saltRounds)
   .then(hash => {
     const sql = `UPDATE users SET password='${hash}', fgpasword='0' WHERE fgpasword='${token}';`
@@ -91,14 +89,50 @@ Router.put("/createPassword", (req, res) => {
       if (err) {
       console.log("[mysql error]", err)
     }
-    //console.log("Number of records inserted: " + result.affectedRows)
   })
-})
+ })
 return res.status(200).send({ mess: "Mot de passe créé" })
 })
+
+// ===============User login with email and password ================/
+Router.post('/login', async (req, res) => {
+  const email = req.body.email
+  const password = req.body.password
+  console.log('email ' + email)
+  console.log('password ' + password)
+  const sql = `SELECT * FROM users WHERE email='${email}';`
+  console.log('SQL ' + sql)
+  
+    con.query(sql, async (err, result) => {
+      const user = await result
+      // if (err) {
+      // console.log("[mysql error]", err)
+      // return res.status(404).send('No user with this email')
+      // }
+      console.log(user)
+      if (!user[0]) return res.status(404).send('No user with this email') // sinon error
+      const validPassword = await bcrypt.compare(req.body.password, user[0].password) // verif password = password db avec bcrypt
+      if (!validPassword) return res.status(400).send('Invalid email or password.') // sinon error
+      const token = jwt.sign({id: user[0].id}, config.get('jwtPrivateKey')) // créé token avec l'id de l'user et la clé
+      res.header('x-auth-token', token).send('User connected') // renvoi le token dans le header
+    })
+})
+  
+// router.post('/', async (req, res, next) => {
+    
+//   const user = await db.readUserEmail(req.body.email) // verif email dans db
+//   if (!user[0]) return res.status(404).send('No user with this email') // sinon error
+  
+//   const validPassword = await bcrypt.compare(req.body.password, user[0].password) // verif password = password db avec bcrypt
+  
+//   if (!validPassword) return res.status(400).send('Invalid email or password.') // sinon error
+  
+//   const token = jwt.sign({id: user[0].id}, config.get('jwtPrivateKey')) // créé token avec l'id de l'user et la clé
+//   res.header('x-auth-token', token).send('User connected') // renvoi le token dans le header
+  
+// })
 
 
 module.exports = Router
 
 
-// UPDATE users SET statussocial='0', fgpasword='0' WHERE idusers=15;
