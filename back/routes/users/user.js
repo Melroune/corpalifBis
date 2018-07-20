@@ -58,7 +58,7 @@ Router.put("/validateUsers/:id", (req, res) => {
         from: 'test.corpalif@gmail.com', // sender address
         to: res[0].email, // list of receivers
         subject: 'Changement Mot de passe', // Subject line
-        html: `<p>Welcome to corpalif cliquez ici pour changer votre mot de passe http://localhost:3000/password/${token}</p>`
+        html: `<p>Welcome to corpalif cliquez ici pour changer votre mot de passe http://localhost:3000/password?token=${token}</p>`
       }
     
       transporter.sendMail(mailOptions, function (err, info) {
@@ -78,26 +78,27 @@ Router.put("/validateUsers/:id", (req, res) => {
 // ===============User create password after receiving email ================/
 
 Router.put("/createPassword", (req, res) => {
-  const password = req.body.password
-  const token = req.body.token
+  const password = req.body.user.password
+  const token = req.body.user.token
+  console.log('password ' + password)
+  console.log('token ' + token)
 
   bcrypt.hash(password, saltRounds)
   .then(hash => {
     const sql = `UPDATE users SET password='${hash}', fgpasword='0' WHERE fgpasword='${token}';`
   
     con.query(sql, (err, result) => {
-      if (err) {
-      console.log("[mysql error]", err)
-    }
+      if (err) throw err
+    return res.status(200).send({ mess: "Mot de passe créé" })
   })
  })
-return res.status(200).send({ mess: "Mot de passe créé" })
 })
 
 // ===============User login with email and password ================/
-Router.post('/login', async (req, res) => {
-  const email = req.body.email
-  const password = req.body.password
+Router.post('/login', (req, res) => {
+  console.log('BODY ' + req.body.member)
+  const email = req.body.member.email
+  const password = req.body.member.password
   console.log('email ' + email)
   console.log('password ' + password)
   const sql = `SELECT * FROM users WHERE email='${email}';`
@@ -105,32 +106,22 @@ Router.post('/login', async (req, res) => {
   
     con.query(sql, async (err, result) => {
       const user = await result
-      // if (err) {
-      // console.log("[mysql error]", err)
-      // return res.status(404).send('No user with this email')
-      // }
+      if (err) {
+      console.log("[mysql error]", err)
+      return res.status(404).send('No user with this email')
+      }
       console.log(user)
-      if (!user[0]) return res.status(404).send('No user with this email') // sinon error
-      const validPassword = await bcrypt.compare(req.body.password, user[0].password) // verif password = password db avec bcrypt
-      if (!validPassword) return res.status(400).send('Invalid email or password.') // sinon error
-      const token = jwt.sign({id: user[0].id}, config.get('jwtPrivateKey')) // créé token avec l'id de l'user et la clé
-      res.header('x-auth-token', token).send('User connected') // renvoi le token dans le header
+       if (!user[0]) return res.status(404).send('No user with this email') // sinon error
+       const validPassword = await bcrypt.compare(req.body.member.password, user[0].password) // verif password = password db avec bcrypt
+       console.log('validPassword ' + validPassword)
+       if (!validPassword) return res.status(400).send('Invalid email or password.') // sinon error
+       const token = jwt.sign({id: user[0].id}, config.get('jwtPrivateKey')) // créé token avec l'id de l'user et la clé
+       console.log('token '+ token)
+       res.header('x-auth-token', token).send('User connected') // renvoi le token dans le header
     })
 })
   
-// router.post('/', async (req, res, next) => {
-    
-//   const user = await db.readUserEmail(req.body.email) // verif email dans db
-//   if (!user[0]) return res.status(404).send('No user with this email') // sinon error
-  
-//   const validPassword = await bcrypt.compare(req.body.password, user[0].password) // verif password = password db avec bcrypt
-  
-//   if (!validPassword) return res.status(400).send('Invalid email or password.') // sinon error
-  
-//   const token = jwt.sign({id: user[0].id}, config.get('jwtPrivateKey')) // créé token avec l'id de l'user et la clé
-//   res.header('x-auth-token', token).send('User connected') // renvoi le token dans le header
-  
-// })
+
 
 
 module.exports = Router

@@ -4,7 +4,7 @@ import BaliseH1Form from './BaliseH1Form.js';
 import queryString from "query-string"
 import { connect } from "react-redux"
 import axios from "axios"
-
+import { Redirect } from 'react-router'
 // import BaliseH2 from './BaliseH2.js';
 // import BalisePBold from './BalisePBold.js';
 // import BaliseP from './BaliseP.js';
@@ -19,16 +19,17 @@ import axios from "axios"
 
 // console.log(id)
 class PasswordForm extends React.Component {
-
-  
-  
-
   state = {
     email: '',
-    password: ''
+    password: '',
+    token: null,
+    fireRedirect: false
   }
 
-
+  componentDidMount() {
+    console.log(`Props recus`,this.props)
+    this.setState({token: this.props.token})
+  }
   handleChange = event => {
 
     console.log('state', this.state)
@@ -40,24 +41,24 @@ class PasswordForm extends React.Component {
 
   HandleSubmit = (event, req, res) => {
     console.log('submit ok')
-     event.preventDefault()
+     //event.preventDefault()
     // const token = queryString.parse(this.props.search)
+    this.setState({ fireRedirect: true })
 
     const user = {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      token: this.state.token
     }
     console.log(user)
-    fetch(`http://localhost:3030/users/createPassword`, {
 
-        method: 'PUT',
-        body: JSON.stringify({user}),
-        headers: {
-          'Content-Type': 'application/json'
-        }
+    axios.put(`http://localhost:3030/users/createPassword`, {
+      user
       }).then(response => {
-        response.json()
+          console.log(response);
+          
         })
+
     // axios
     //   .put(
     //     `http://localhost:3030/users/createPassword`, {
@@ -67,6 +68,9 @@ class PasswordForm extends React.Component {
   }
 
   render(){
+    console.log('yolo its me', this.state.token)
+    const { fireRedirect } = this.state
+
     return (
   <article>
 
@@ -113,6 +117,9 @@ class PasswordForm extends React.Component {
                   <Button type="submit"  className="col-2">Valider</Button>
                 </DivRow>
               </Form>
+              {fireRedirect && (
+              <Redirect to={'/login'}/>
+        )}
 
             </DivFloat>
           </DivCentrer>
