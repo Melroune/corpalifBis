@@ -25,7 +25,8 @@ class Formulaire extends React.Component {
     telMobile: '',
     structure: '',
     service: '',
-    fonction: ''
+    fonction: '',
+    password: ''
   }
 
   handleChange = event => {
@@ -64,6 +65,30 @@ class Formulaire extends React.Component {
         })
   }
 
+  HandleSubmit2 = (event, req, res) => {
+    event.preventDefault()
+    const member = {
+      
+      email: this.state.email,
+      password: this.state.password
+    }
+    console.log(member)
+
+    fetch(`http://localhost:3030/users/login`, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({member})
+        
+      })
+      .then(response => {
+        response.json()
+        })
+      
+  }
+
+
   render(){
     return (
   <article>
@@ -72,7 +97,7 @@ class Formulaire extends React.Component {
           <BaliseH1Form children="S'identifier" />
           <DivCentrer>
             <DivFloat>
-              <Form>
+              <Form onSubmit={this.HandleSubmit2}>
                 <DivRow className="row justify-content-center">
                   <DivLabel className="col-3">
                     <Label for="inputEmail">Email</Label>
@@ -86,7 +111,7 @@ class Formulaire extends React.Component {
                     <Label for="inputPassword">Mot de passe</Label>
                   </DivLabel>
                   <div className="col-5">
-                    <Input type="password" className="form-control" id="password" />
+                    <Input type="password" className="form-control" name="password" onChange={this.handleChange}/>
                   </div>
                 </DivRow>
                 <DivRow className="row justify-content-center">
